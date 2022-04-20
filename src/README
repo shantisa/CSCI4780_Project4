@@ -1,0 +1,27 @@
+Project Group Members:
+Shantisa Strowder
+Samuel Jackson
+Terique Mick
+
+How to compile and run on nike:
+Note: You must run the files on separate terminals in nike.
+Examples are listed below for compiling and running both the bootstrap
+name server and nameserver files. Please note that you MUST compile the
+"Server.java" file before compiling and running the
+"bnserver.java" and "nameserver.java". It is required for the project
+to run properly.
+
+Bootstrap name server (bnserver)
+javac bnserver.java
+java bnserver (config file)
+Example run: java bnserver bnConfigFile.txt
+
+Name server (nameserver)
+javac nameserver.java
+java nameserver (config file)
+Example run: java nameserver nsConfigFile1.txt
+
+Statement:
+This project was done in its entirety by Shantisa Strowder, Samuel Jackson,
+and Terique Mick. We hereby state that we have not received unauthorized
+help of any form.
