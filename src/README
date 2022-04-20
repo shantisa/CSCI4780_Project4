@@ -11,7 +11,9 @@ name server and nameserver files. Please note that you MUST compile the
 "bnserver.java" and "nameserver.java". It is required for the project
 to run properly.
 
-Server - Note: you do not run this file, COMPILE ONLY
+Server - Note: you do not run this file, COMPILE ONLY. Place the
+Server.class file into the directories of the bnserver and
+nameserver files in the nike terminal
 javac Server.java
 
 Bootstrap name server (bnserver)
