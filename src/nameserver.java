@@ -116,9 +116,9 @@ class Parser extends Thread {
                 }else{
                     String value = server.lookup.get(key);
                     if(value == null){
-                        server.bootstrap.message("Key not found" + "\n" + "Server lookup sequence " + sequence + id + " ");
+                        server.bootstrap.message("Key not found" + "\n" + "Server lookup sequence " + sequence + "\nvalue not found in " + id);
                     }else{
-                        server.bootstrap.message("value is "+ value + "\n" + "Server lookup sequence " + sequence + id + " ");
+                        server.bootstrap.message("value is "+ value + "\n" + "Server lookup sequence " + sequence + "\nvalue found in " + id);
                     }
                 }
 
@@ -132,7 +132,7 @@ class Parser extends Thread {
                     next.insert(key,value, sequence + id + " ");
                 }else{
                     server.lookup.put(key, value);
-                    server.bootstrap.message("Key was inserted in " + id + "\n" + "Server lookup sequence " + sequence + id + " ");
+                    server.bootstrap.message("Key was inserted in " + id + "\n" + "Server lookup sequence " + sequence +"\nvalue inserted in " + id);
                 }
             } else if (command.equals("delete")) {
                 int key = Integer.parseInt(commands[1]);
@@ -144,9 +144,9 @@ class Parser extends Thread {
                 }else{
                     String value = server.lookup.remove(key);
                     if(value == null){
-                        server.bootstrap.message("Key not found\n" + "Server lookup sequence " + sequence + id + " ");
+                        server.bootstrap.message("Key not found\n" + "Server lookup sequence " + sequence +"\nvalue not found in " + id);
                     }else{
-                        server.bootstrap.message("Successful deletion in\n" + "Server lookup sequence " + sequence + id + " ");
+                        server.bootstrap.message("Successful deletion in\n" + "Server lookup sequence " + sequence  +"\nvalue deleted from " + id);
                     }
                 }
             } else if(command.equals("enter")){

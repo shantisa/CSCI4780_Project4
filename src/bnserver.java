@@ -54,9 +54,9 @@ public class bnserver {
                         }else{
                             String value = lookup.get(key);
                             if(value == null){
-                                System.out.println("Key not found");
+                                System.out.println("Key not found in boostrap");
                             }else{
-                                System.out.println("value is "+ value);
+                                System.out.println("value is "+ value+"\nvalue found in boostrap");
                             }
                             System.out.println("Server lookup sequence"+ " 0 ");
                         }
@@ -71,7 +71,7 @@ public class bnserver {
                         }
                         else{
                             lookup.put(key, value);
-                            System.out.println("Key was inserted in"+ " 0 ");
+                            System.out.println("Key was inserted in bootstrap");
                             System.out.println("Server lookup sequence"+ " 0 ");
                         }
                     } else if (command.equals("delete")) {
@@ -84,9 +84,9 @@ public class bnserver {
                         }else{
                             String value = lookup.remove(key);
                             if(value == null){
-                                System.out.println("Key not found");
+                                System.out.println("Key not found in bootstrap");
                             }else{
-                                System.out.println("Successful deletion");
+                                System.out.println("Successful deletion from bootstrap");
                             }
                             System.out.println("Server lookup sequence"+ " 0 ");
                         }
