@@ -116,9 +116,9 @@ class Parser extends Thread {
                 }else{
                     String value = server.lookup.get(key);
                     if(value == null){
-                        server.bootstrap.message("Key not found" + "\n" + "Server lookup sequence " + sequence + "\nvalue not found in " + id);
+                        server.bootstrap.message("Key not found in ID " + id + "\n" + "Server lookup sequence " + sequence);
                     }else{
-                        server.bootstrap.message("value is "+ value + "\n" + "Server lookup sequence " + sequence + "\nvalue found in " + id);
+                        server.bootstrap.message("Value is "+ value +"\nValue found in ID " + id + "\n" + "Server lookup sequence " + sequence);
                     }
                 }
 
@@ -132,7 +132,7 @@ class Parser extends Thread {
                     next.insert(key,value, sequence + id + " ");
                 }else{
                     server.lookup.put(key, value);
-                    server.bootstrap.message("Key was inserted in " + id + "\n" + "Server lookup sequence " + sequence +"\nvalue inserted in " + id);
+                    server.bootstrap.message("Key was inserted in ID " + id + "\n" + "Server lookup sequence " + sequence);
                 }
             } else if (command.equals("delete")) {
                 int key = Integer.parseInt(commands[1]);
@@ -144,9 +144,9 @@ class Parser extends Thread {
                 }else{
                     String value = server.lookup.remove(key);
                     if(value == null){
-                        server.bootstrap.message("Key not found\n" + "Server lookup sequence " + sequence +"\nvalue not found in " + id);
+                        server.bootstrap.message("Key not found in ID " + id + "\nServer lookup sequence " + sequence);
                     }else{
-                        server.bootstrap.message("Successful deletion in\n" + "Server lookup sequence " + sequence  +"\nvalue deleted from " + id);
+                        server.bootstrap.message("Successful deletion in ID " + id + "\nServer lookup sequence " + sequence);
                     }
                 }
             } else if(command.equals("enter")){
@@ -163,13 +163,13 @@ class Parser extends Thread {
                 else if(next == null || next.compareTo(ns) > 0){
                     ns.message("Successful entry\n" + "Server lookup sequence "+ sequence + id + " ");
                     if(next == null){
-                        ns.message("Handling range of "+ sId + " 1023" + "\nAfter " + id + " and Before nothing");
+                        ns.message("Handling range of "+ sId + "-1023" + "\nPredecessor ID is " + id + " and Successor ID is 0(bootstrap)");
                         ns.setPre(server.me);
                         Map<Integer, String> subMap = server.lookup.tailMap(ns.id);
                         ns.insertAll(subMap);
                     }
                     else{
-                        ns.message("Handling range of "+ sId + " " + (next.id - 1) + "\nAfter "+ id +" and Before "+ next.id);
+                        ns.message("Handling range of "+ sId + "-" + (next.id - 1) + "\nPredecessor ID is "+ id +" and Successor ID is "+ next.id);
                         next.setPre(ns);
                         ns.setPost(next);
                         ns.setPre(server.me);
@@ -206,8 +206,10 @@ class Parser extends Thread {
                 if(success){
                     Server pre = server.pre;
                     Server post = server.post;
+                    int postRange = 1023;
                     if(post != null){
                         post.setPre(pre);
+                        postRange = post.id-1;
                     }
                     if(pre == null){
                         pre = server.bootstrap;
@@ -218,7 +220,7 @@ class Parser extends Thread {
                     server.post = null;
                     server.pre = null;
                     server.me = null;
-                    System.out.println("Successful exit\nServer lookup sequence"+ sequence);
+                    System.out.println("Successful exit\n" + "Range of " + server.id + "-" + postRange + " is handed over to Predecessor ID "+ pre.id + "\nServer lookup sequence"+ sequence);
                 }else{
                     System.out.println("Failed exit\n" + "Server lookup sequence"+ sequence);
                 }

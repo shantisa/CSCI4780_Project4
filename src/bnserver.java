@@ -54,9 +54,9 @@ public class bnserver {
                         }else{
                             String value = lookup.get(key);
                             if(value == null){
-                                System.out.println("Key not found in boostrap");
+                                System.out.println("Key not found in bootstrap");
                             }else{
-                                System.out.println("value is "+ value+"\nvalue found in boostrap");
+                                System.out.println("Value is "+ value+"\nValue found in ID 0 (bootstrap)");
                             }
                             System.out.println("Server lookup sequence"+ " 0 ");
                         }
@@ -71,7 +71,7 @@ public class bnserver {
                         }
                         else{
                             lookup.put(key, value);
-                            System.out.println("Key was inserted in bootstrap");
+                            System.out.println("Key was inserted in ID 0 (bootstrap)");
                             System.out.println("Server lookup sequence"+ " 0 ");
                         }
                     } else if (command.equals("delete")) {
@@ -141,12 +141,12 @@ class CommandParser extends Thread {
                 if(next == null || next.id > ns.id){
                     outputStream.writeUTF("Successful entry\nServer lookup sequence"+ " 0 ");
                     if(next == null){
-                        outputStream.writeUTF("Handling range of "+ sId + " 1023" + "\nAfter 0(bootstrap) and Before nothing");
+                        outputStream.writeUTF("Handling range of "+ sId + "-1023" + "\nPredecessor ID is 0(bootstrap) and Successor ID is 0(bootstrap)");
                         Map<Integer, String> subMap = bootstrap.lookup.tailMap(ns.id);
                         ns.insertAll(subMap);
                     }
                     else{
-                        outputStream.writeUTF("Handling range of "+ sId + " " + (next.id - 1) + "\nAfter 0(bootstrap) and Before "+next.id);
+                        outputStream.writeUTF("Handling range of "+ sId + "-" + (next.id - 1) + "\nPredecessor ID is 0(bootstrap) and Successor ID is "+next.id);
                         next.setPre(ns);
                         ns.setPost(next);
                         Map<Integer, String> subMap = bootstrap.lookup.subMap(ns.id, next.id);
