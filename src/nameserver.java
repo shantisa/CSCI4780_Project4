@@ -116,9 +116,9 @@ class Parser extends Thread {
                 }else{
                     String value = server.lookup.get(key);
                     if(value == null){
-                        server.bootstrap.message("Key not found in ID " + id + "\n" + "Server lookup sequence " + sequence);
+                        server.bootstrap.message("Key not found in ID " + id + "\n" + "Server lookup sequence " + sequence + id);
                     }else{
-                        server.bootstrap.message("Value is "+ value +"\nValue found in ID " + id + "\n" + "Server lookup sequence " + sequence);
+                        server.bootstrap.message("Value is "+ value +"\nValue found in ID " + id + "\n" + "Server lookup sequence " + sequence + id);
                     }
                 }
 
@@ -132,7 +132,7 @@ class Parser extends Thread {
                     next.insert(key,value, sequence + id + " ");
                 }else{
                     server.lookup.put(key, value);
-                    server.bootstrap.message("Key was inserted in ID " + id + "\n" + "Server lookup sequence " + sequence);
+                    server.bootstrap.message("Key was inserted in ID " + id + "\n" + "Server lookup sequence " + sequence + id);
                 }
             } else if (command.equals("delete")) {
                 int key = Integer.parseInt(commands[1]);
@@ -144,9 +144,9 @@ class Parser extends Thread {
                 }else{
                     String value = server.lookup.remove(key);
                     if(value == null){
-                        server.bootstrap.message("Key not found in ID " + id + "\nServer lookup sequence " + sequence);
+                        server.bootstrap.message("Key not found in ID " + id + "\nServer lookup sequence " + sequence + id);
                     }else{
-                        server.bootstrap.message("Successful deletion in ID " + id + "\nServer lookup sequence " + sequence);
+                        server.bootstrap.message("Successful deletion in ID " + id + "\nServer lookup sequence " + sequence + id);
                     }
                 }
             } else if(command.equals("enter")){
