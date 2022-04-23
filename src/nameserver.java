@@ -175,7 +175,6 @@ class Parser extends Thread {
                         ns.setPre(server.me);
                         Map<Integer, String> subMap = server.lookup.subMap(ns.id, next.id);
                         ns.insertAll(subMap);
-                        subMap.clear();
                     }
                     server.post = ns;
                 }
