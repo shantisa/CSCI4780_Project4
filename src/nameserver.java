@@ -220,7 +220,7 @@ class Parser extends Thread {
                     server.post = null;
                     server.pre = null;
                     server.me = null;
-                    System.out.println("Successful exit\n" + "Range of " + server.id + "-" + postRange + " is handed over to Predecessor ID "+ pre.id + "\nServer lookup sequence"+ sequence);
+                    System.out.println("Successful exit\n" + "Range of " + server.id + "-" + postRange + " is handed over to ID "+ pre.id + "\nServer lookup sequence"+ sequence);
                 }else{
                     System.out.println("Failed exit\n" + "Server lookup sequence"+ sequence);
                 }
