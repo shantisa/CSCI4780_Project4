@@ -159,9 +159,9 @@ class CommandParser extends Thread {
                 }
             } else if(command.equals("insertAll")){
                 int id = 0;
-                while(inputStream.available() > 0){
-                    int key = inputStream.readInt();
-                    String value = inputStream.readUTF();
+                for(int i = 1;commands.length> i;i+=2){
+                    int key = Integer.parseInt(commands[i]);
+                    String value = commands[i+1];
                     if(key >=  id){
                         bootstrap.lookup.put(key, value);
                     }

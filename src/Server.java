@@ -91,11 +91,12 @@ class Server implements Comparable<Server>{
         new Thread(() -> {
             try (Socket socket = new Socket(ip, port)) {
                 DataOutputStream outputStream = new DataOutputStream(socket.getOutputStream());
-                outputStream.writeUTF("insertAll");
+                StringBuilder str = new StringBuilder("insertAll ");
                 for (Map.Entry<Integer, String> entry : values.entrySet()){
-                    outputStream.writeInt( entry.getKey());
-                    outputStream.writeUTF( entry.getValue());
+                    str.append(entry.getKey()).append(" ");
+                    str.append(entry.getValue()).append(" ");
                 }
+                outputStream.writeUTF(str.toString());
                 values.clear();
             } catch (IOException ignored) {
             }
